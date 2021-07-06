@@ -202,6 +202,19 @@ tr{
     <div class="card-content">
       <h1 class="logo">Todo List</h1>
       <form action="/todo/create" method="POST" class="content-1">
+      @csrf
+      @foreach ($tasks as $task)
+      <tr>
+        <td class="date">$task->created_at</td>
+        <td class="text"><input type="text" value="ccc">$task->name</td>
+        <td class="update">
+          <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
+        </td>
+        <td class="delete">
+          <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
+        </td>
+      </tr>
+      @endforeach
         <div class="input-text">
           <input type="text">
         </div>
@@ -216,9 +229,12 @@ tr{
         <p class="p3">削除</p>
       </div>
       <table>
+        
+        @foreach ($tasks as $task)
+
         <tr>
-          <td class="date">2021-07-01 06:40:19</td>
-          <td class="text"><input type="text" value="ccc"></td>
+          <td class="date">$task->created_at</td>
+          <td class="text"><input type="text" value="ccc">$task->name</td>
           <td class="update">
             <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
           </td>
@@ -226,50 +242,8 @@ tr{
             <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
           </td>
         </tr>
-        <tr>
-          <td class="date">2021-07-01 06:40:31</td>
-          <td class="text"><input type="text" value="[[[["></td>
-          <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-          </td>
-        </tr>
-        <tr>
-          <td class="date">2021-07-01 16:02:15</td>
-          <td class="text"><input type="text" value="iiiiiiiiiii"></td>
-          <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-          </td>
-        </tr>
-        <tr>
-          <td class="date">2021-07-01 16:02:30</td>
-          <td class="text"><input type="text" value="1111111111"></td>
-          <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-          </td>
-        </tr>
-        <tr>
-          <td class="date">2021-07-01 17:35:24</td>
-          <td class="text"><input type="text" value="ああああああああああ"></td>
-          <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-          </td>
-        </tr>
+        @endforeach
       </table>
-      <div>
-        @yield('content')
-      </div>
     </div>
   </div>
 </body>

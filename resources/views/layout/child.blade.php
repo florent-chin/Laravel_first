@@ -78,16 +78,4 @@ hr {
 input, select {
     vertical-align:middle;
 }
-@section('content')
-<tr>
-  <td class="date">2021-07-01 06:40:19</td>
-  <td class="text"><input type="text" value="ccc"></td>
-  <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-          </td>
-</tr>
 
-@endsection

@@ -2,35 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use Faker\Provider\ar_JO\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Task;
 
 class TodoController extends Controller
 {
     public function index(){
-        return view('First.index');
+        $data=Task::all();
+        return view('First.index',['tasks'=>$data]);
     }
     
-    public function create(){
-        return view('First.index');
+    public function create(Request $request){
+        $newTask=$request->input("newTask");
+
+        $task=new Task();
+        $task->name = $newTask;
+        $task->save();
+
+        $data=Task::all();
+        return view('First.index',['tasks'=>$data]);
     }
 
-    public function update(){
-        return view('First.index');
+    public function update(Request $request){
+        $newTask=$request->input("newTask");
+        $taskId=$request->input("taskId");
+
+        $task = Task::where("id", $taskId)->first();
+        $task->name = $newTask;
+        $task->save();
+
+        $data=Task::all();
+        return view('First.index',['tasks'=>$data]);
     }
 
-    public function delete(){
-        return view('First.index');
+    public function delete(Request $request){
+        $taskId = $request->input("taskId");
+
+        $task = Task::where("id", $taskId)->first();
+        $task->delete();
+
+        $data=Task::all();
+        return view('First.index',['tasks'=>$data]);
     }
 
     public function post(Request $request){
         $validate_rule=[
-            'content'=>'required_digits_between:1,200'
+            'content'=>'required_digits_between:1,20'
         ];
-    }
 
-    public function db(Request $request){
-        $items=DB::select('select * from List');
-        return view('index',['items'=>$items]);
     }
 }
