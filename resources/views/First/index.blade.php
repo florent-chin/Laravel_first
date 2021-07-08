@@ -223,6 +223,8 @@ tr{
           @csrf
           @foreach ($tasks as $task)
           <tr>
+          <form action="/todo/delete" method="GET">
+            @csrf
           <form action="/todo/update" method="POST">
             @csrf
             <td class="date">{{$task->created_at}}</td>
@@ -231,11 +233,10 @@ tr{
               <input type="submit" name="taskDo" value="更新">
               <input  type="hidden" name="taskId" value="{{$task->id}}">
           </form>
+          </form>
           </td>
           <td class="delete">
             <form action="/todo/delete" method="GET"><input type="submit" value="削除">
-              @csrf
-            </form>
           </td>
         </tr>
           @endforeach
