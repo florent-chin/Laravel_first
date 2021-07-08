@@ -229,7 +229,7 @@ tr{
             <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
             <td class="update">
               <input type="submit" name="taskDo" value="更新">
-              <input  type="" name="taskId" value="{{$task->id}}">
+              <input  type="hidden" name="taskId" value="{{$task->id}}">
           </form>
           </td>
           <td class="delete">

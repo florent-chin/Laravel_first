@@ -32,7 +32,8 @@ class TodoController extends Controller
         $taskId = $request->taskId;
         
         
-        $task = Task::where("id", $taskId);
+        
+        $task = Task::where("id", $taskId)->first();
         $task->name = $newTask;
         
         
