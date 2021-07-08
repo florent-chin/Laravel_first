@@ -29,12 +29,13 @@ class TodoController extends Controller
     {
 
         $newTask=$request->newTask;
-        dd($newTask);
-        $taskId = $request->input("taskId");
+        $taskId = $request->taskId;
+        
         
         $task = Task::where("id", $taskId);
         $task->name = $newTask;
-        $task->save();
+        
+        
 
         $data = Task::all();
         return view('First.index', ['tasks' => $data]);

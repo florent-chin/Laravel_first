@@ -7,5 +7,5 @@ Route::get('/', [TodoController::class,'index']);
 Route::prefix('/todo')->group(function(){
   Route::POST('/create',[TodoController::class,'create']);
   Route::POST('/update',[TodoController::class,'update']);
-  Route::get('/delete',[TodoController::class,'delete']);
+  Route::GET('/delete',[TodoController::class,'delete']);
 });

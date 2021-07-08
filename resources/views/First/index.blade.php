@@ -164,7 +164,7 @@ tr{
 .update{
   padding: 0 10px;
 }
-.update button{
+.update input{
   background-color: white;
   border-radius: 5px;
   border: 2px solid #ffa500;
@@ -173,12 +173,12 @@ tr{
   height: 35px;
   font-weight: bold;
 }
-.update button:hover{
+.update input:hover{
   background-color:#ffa500;
   color: white;
   transition: 0.5s;
 }
-.delete button{
+.delete input{
   background-color: white;
   border-radius: 5px;
   border: 2px solid #00fa9a;
@@ -187,7 +187,7 @@ tr{
   height: 35px;
   font-weight: bold;
 }
-.delete button:hover{
+.delete input:hover{
   background-color:#00fa9a;
   color: white;
   transition: 0.5s;
@@ -218,28 +218,33 @@ tr{
       </div>
       <table>
         
-        @foreach ($tasks as $task)
-
-        <tr>
-          <td class="date">{{$task->created_at}}</td>
-          <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
-          <td class="update">
-            <form action="/todo/update" method="POST">
-            <button type="submit" name="newTask">更新</button>
+        
+        <form action="/todo/update" method="POST">
+          @csrf
+          @foreach ($tasks as $task)
+          <tr>
+          <form action="/todo/update" method="POST">
             @csrf
-            </form>
+            <td class="date">{{$task->created_at}}</td>
+            <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
+            <td class="update">
+              <input type="submit" name="taskDo" value="更新">
+              <input  type="" name="taskId" value="{{$task->id}}">
+          </form>
           </td>
           <td class="delete">
-            <form action="/todo/delete" method="GET">
-            <button type="submit" name="taskId">削除</button>
-            @csrf
+            <form action="/todo/delete" method="GET"><input type="submit" value="削除">
+              @csrf
             </form>
           </td>
         </tr>
-        @endforeach
+          @endforeach
+        
       </table>
     </div>
   </div>
 </body>
 
 </html>
+                     
+         
