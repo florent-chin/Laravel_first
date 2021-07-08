@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [TodoController::class,'index']);
 Route::prefix('/todo')->group(function(){
-  Route::post('/create',[TodoController::class,'create']);
-  Route::post('/update',[TodoController::class,'update']);
-  Route::post('/delete',[TodoController::class,'delete']);
+  Route::POST('/create',[TodoController::class,'create']);
+  Route::POST('/update',[TodoController::class,'update']);
+  Route::get('/delete',[TodoController::class,'delete']);
 });

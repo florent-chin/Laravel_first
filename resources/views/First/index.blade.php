@@ -203,24 +203,12 @@ tr{
       <h1 class="logo">Todo List</h1>
       <form action="/todo/create" method="POST" class="content-1">
       @csrf
-      @foreach ($tasks as $task)
-      <tr>
-        <td class="date">$task->created_at</td>
-        <td class="text"><input type="text" value="ccc">$task->name</td>
-        <td class="update">
-          <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
-        </td>
-        <td class="delete">
-          <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
-        </td>
-      </tr>
-      @endforeach
-        <div class="input-text">
-          <input type="text">
-        </div>
-        <div class="content-1-btn">
-          <input type="submit" value="追加">
-        </div>
+      <div class="input-text">
+        <input type="text" name="newTask">
+      </div>
+      <div class="content-1-btn">
+        <input type="submit" value="追加">
+      </div>
       </form>
       <div class="content-2">
         <p class="p1">作成日</p>
@@ -233,13 +221,17 @@ tr{
         @foreach ($tasks as $task)
 
         <tr>
-          <td class="date">$task->created_at</td>
-          <td class="text"><input type="text" value="ccc">$task->name</td>
+          <td class="date">{{$task->created_at}}</td>
+          <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
           <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" value="更新"></form>
+            <form action="/todo/update" method="POST"><input type="submit" name="taskId" value="更新">
+            @csrf
+            </form>
           </td>
           <td class="delete">
-            <form action="/todo/delete" method="POST"><input type="submit" value="削除"></form>
+            <form action="/todo/delete" method="GET"><input type="submit" value="削除">
+            @csrf
+            </form>
           </td>
         </tr>
         @endforeach

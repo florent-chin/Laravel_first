@@ -18,7 +18,7 @@ class TodoController extends Controller
         $newTask=$request->input("newTask");
 
         $task=new Task();
-        $task->name = $newTask;
+        $task->name= $newTask;
         $task->save();
 
         $data=Task::all();
@@ -29,27 +29,27 @@ class TodoController extends Controller
         $newTask=$request->input("newTask");
         $taskId=$request->input("taskId");
 
-        $task = Task::where("id", $taskId)->first();
+        $task = Task::where("id", $taskId);
         $task->name = $newTask;
         $task->save();
 
         $data=Task::all();
         return view('First.index',['tasks'=>$data]);
     }
-
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         $taskId = $request->input("taskId");
-
-        $task = Task::where("id", $taskId)->first();
+        $task = Task::where("id", $taskId);
         $task->delete();
-
-        $data=Task::all();
-        return view('First.index',['tasks'=>$data]);
+        
+        $task = Task::all();
+        return view('First.index',['tasks'=>$task]);
     }
+
 
     public function post(Request $request){
         $validate_rule=[
-            'content'=>'required_digits_between:1,20'
+            'name'=>'required_digits_between:1,20'
         ];
 
     }
