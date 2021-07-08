@@ -25,16 +25,19 @@ class TodoController extends Controller
         return view('First.index',['tasks'=>$data]);
     }
 
-    public function update(Request $request){
-        $newTask=$request->input("newTask");
-        $taskId=$request->input("taskId");
+    public function update(Request $request)
+    {
 
+        $newTask=$request->newTask;
+        dd($newTask);
+        $taskId = $request->input("taskId");
+        
         $task = Task::where("id", $taskId);
         $task->name = $newTask;
         $task->save();
 
-        $data=Task::all();
-        return view('First.index',['tasks'=>$data]);
+        $data = Task::all();
+        return view('First.index', ['tasks' => $data]);
     }
     public function delete(Request $request)
     {

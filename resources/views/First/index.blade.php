@@ -164,7 +164,7 @@ tr{
 .update{
   padding: 0 10px;
 }
-.update input{
+.update button{
   background-color: white;
   border-radius: 5px;
   border: 2px solid #ffa500;
@@ -173,12 +173,12 @@ tr{
   height: 35px;
   font-weight: bold;
 }
-.update input:hover{
+.update button:hover{
   background-color:#ffa500;
   color: white;
   transition: 0.5s;
 }
-.delete input{
+.delete button{
   background-color: white;
   border-radius: 5px;
   border: 2px solid #00fa9a;
@@ -187,7 +187,7 @@ tr{
   height: 35px;
   font-weight: bold;
 }
-.delete input:hover{
+.delete button:hover{
   background-color:#00fa9a;
   color: white;
   transition: 0.5s;
@@ -224,12 +224,14 @@ tr{
           <td class="date">{{$task->created_at}}</td>
           <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
           <td class="update">
-            <form action="/todo/update" method="POST"><input type="submit" name="taskId" value="更新">
+            <form action="/todo/update" method="POST">
+            <button type="submit" name="newTask">更新</button>
             @csrf
             </form>
           </td>
           <td class="delete">
-            <form action="/todo/delete" method="GET"><input type="submit" value="削除">
+            <form action="/todo/delete" method="GET">
+            <button type="submit" name="taskId">削除</button>
             @csrf
             </form>
           </td>
