@@ -219,28 +219,29 @@ tr{
       <table>
         
         
-        <form action="/todo/update" method="POST">
-          @csrf
-          @foreach ($tasks as $task)
-          <tr>
-          <form action="/todo/delete" method="GET">
-            @csrf
-          <form action="/todo/update" method="POST">
-            @csrf
-            <td class="date">{{$task->created_at}}</td>
-            <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
-            <td class="update">
-              <input type="submit" name="taskDo" value="更新">
-              <input  type="hidden" name="taskId" value="{{$task->id}}">
-          </form>
-          </form>
-          </td>
-          <td class="delete">
-            <form action="/todo/delete" method="GET"><input type="submit" value="削除">
-          </td>
-        </tr>
-          @endforeach
         
+        
+          
+            @foreach ($tasks as $task)
+            <tr>
+             <form action="/todo/update" method="POST">
+              @csrf
+              <td class="date">{{$task->created_at}}</td>
+              <td class="text"><input type="text" name="newTask" value="{{$task->name}}"></td>
+              <td class="update">
+                <input type="submit" name="taskDo" value="更新">
+                <input  type="hidden" name="taskId" value="{{$task->id}}">
+              </form>
+              </td>
+              <td class="delete">
+                <form action="/todo/delete" method="GET">
+                @csrf
+                  <input type="submit" value="削除">
+                <input type="hidden" name="taskId" value="{{$task->id}}">
+                </form>
+              </td>
+            </tr>
+            @endforeach
       </table>
     </div>
   </div>
